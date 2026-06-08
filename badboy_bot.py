@@ -6,7 +6,7 @@ import os
 import re
 from dataclasses import asdict, dataclass
 from datetime import date, datetime
-from html import unescape
+from html import escape, unescape
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlparse, urlunparse
@@ -245,11 +245,12 @@ def sync_city_events(
         seen_events[event.id] = asdict(event)
 
         if is_new and (is_bootstrapped or NOTIFY_ON_FIRST_RUN):
+            tickets_left = safe_fetch_tickets_left(event.url)
             send_to_city_destinations(
                 city,
                 destinations,
                 telegram,
-                format_new_event_message(event),
+                format_new_event_message(event, tickets_left),
             )
 
     if city not in bootstrapped_cities:
@@ -303,6 +304,14 @@ def fetch_tickets_left(url: str) -> int | None:
     return int(match.group(1)) if match else None
 
 
+def safe_fetch_tickets_left(url: str) -> int | None:
+    try:
+        return fetch_tickets_left(url)
+    except Exception as error:
+        print(f"Failed to fetch ticket count for {url}: {error}")
+        return None
+
+
 def build_destinations(state: dict[str, Any]) -> dict[str, set[str]]:
     destinations: dict[str, set[str]] = {city: set() for city in CITY_URLS}
 
@@ -333,20 +342,24 @@ def send_to_city_destinations(
 ) -> bool:
     sent_any = False
     for chat_id in sorted(destinations.get(city, [])):
-        telegram.send_message(chat_id, text)
+        try:
+            telegram.send_message(chat_id, text)
+        except Exception as error:
+            print(f"Failed to send {city} message to {chat_id}: {error}")
+            continue
         sent_any = True
     return sent_any
 
 
-def format_new_event_message(event: Event) -> str:
+def format_new_event_message(event: Event, tickets_left: int | None) -> str:
     details = [
-        f"Нова подія BadBoy: {event.city_name}",
-        event.title,
-        f"Коли: {event.date_text}",
+        f"Нова подія BadBoy: {escape(event.city_name)}",
+        f"<b>{escape(event.title)}</b>",
+        f"Коли: {escape(event.date_text)}",
     ]
     if event.price:
-        details.append(f"Ціна: {event.price}")
-    details.append(event.url)
+        details.append(f"Ціна: {escape(event.price)}")
+    details.append(format_ticket_link(event.url, tickets_left))
     return "\n".join(details)
 
 
@@ -354,13 +367,23 @@ def format_today_message(event: Event, tickets_left: int | None) -> str:
     tickets = f"{tickets_left} квитків" if tickets_left is not None else "кількість квитків невідома"
     return "\n".join(
         [
-            f"Сьогодні подія BadBoy: {event.city_name}",
-            event.title,
-            f"Коли: {event.date_text}",
-            f"Залишилось: {tickets}",
-            event.url,
+            f"Сьогодні подія BadBoy: {escape(event.city_name)}",
+            f"<b>{escape(event.title)}</b>",
+            f"Коли: {escape(event.date_text)}",
+            f"Залишилось: {escape(tickets)}",
+            format_ticket_link(event.url, tickets_left),
         ]
     )
+
+
+def html_link(label: str, url: str) -> str:
+    return f'<a href="{escape(url, quote=True)}">{escape(label)}</a>'
+
+
+def format_ticket_link(url: str, tickets_left: int | None) -> str:
+    if tickets_left is None:
+        return html_link("Квитки", url)
+    return f'{html_link("Квитки", url)} - залишилось {tickets_left}'
 
 
 def prune_old_completed_events(state: dict[str, Any]) -> None:
@@ -472,8 +495,7 @@ class TelegramClient:
             params=params,
             timeout=HTTP_TIMEOUT_SECONDS,
         )
-        response.raise_for_status()
-        payload = response.json()
+        payload = parse_telegram_response(response, "getUpdates")
         if not payload.get("ok"):
             raise RuntimeError(f"Telegram getUpdates failed: {payload}")
         return payload.get("result", [])
@@ -489,13 +511,30 @@ class TelegramClient:
                 "chat_id": chat_id,
                 "text": text,
                 "disable_web_page_preview": False,
+                "parse_mode": "HTML",
             },
             timeout=HTTP_TIMEOUT_SECONDS,
         )
-        response.raise_for_status()
-        payload = response.json()
+        payload = parse_telegram_response(response, "sendMessage")
         if not payload.get("ok"):
             raise RuntimeError(f"Telegram sendMessage failed: {payload}")
+
+
+def parse_telegram_response(response: requests.Response, method: str) -> dict[str, Any]:
+    try:
+        payload = response.json()
+    except ValueError as error:
+        raise RuntimeError(
+            f"Telegram {method} returned HTTP {response.status_code}: {response.text}"
+        ) from error
+
+    if response.status_code >= 400:
+        description = payload.get("description", response.text)
+        raise RuntimeError(
+            f"Telegram {method} returned HTTP {response.status_code}: {description}"
+        )
+
+    return payload
 
 
 if __name__ == "__main__":
