@@ -1,0 +1,55 @@
+name: Check BadBoy Events
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: badboy-events
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check events
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_TARGET_CHAT_ID_LVIV: ${{ secrets.TELEGRAM_TARGET_CHAT_ID_LVIV }}
+          TELEGRAM_TARGET_CHAT_ID_KYIV: ${{ secrets.TELEGRAM_TARGET_CHAT_ID_KYIV }}
+          TELEGRAM_TARGET_CHAT_ID_DNIPRO: ${{ secrets.TELEGRAM_TARGET_CHAT_ID_DNIPRO }}
+          TELEGRAM_TARGET_CHAT_ID: ${{ secrets.TELEGRAM_TARGET_CHAT_ID }}
+          FOLLOW_CITIES: ${{ vars.FOLLOW_CITIES || 'lviv,kyiv,dnipro' }}
+          TIMEZONE: Europe/Kyiv
+        run: python badboy_bot.py
+
+      - name: Commit state changes
+        run: |
+          if git diff --quiet -- state.json; then
+            echo "No state changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git commit -m "Update BadBoy event state"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

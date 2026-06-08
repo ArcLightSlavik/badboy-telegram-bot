@@ -1,0 +1,228 @@
+{
+  "bootstrapped_cities": [
+    "dnipro",
+    "kyiv",
+    "lviv"
+  ],
+  "completed_events": {},
+  "schema_version": 1,
+  "seen_events": {
+    "dnipro": {
+      "034cf2bb69c274e5": {
+        "city": "dnipro",
+        "city_name": "Дніпро",
+        "date_text": "14.06, Нд, 15:00",
+        "event_date": "2026-06-14",
+        "event_type": "Дегустація",
+        "id": "034cf2bb69c274e5",
+        "price": "1200 грн",
+        "title": "\"Зелені вина\" від \"зеленого\" сомельє",
+        "url": "https://badboy.ua/product/%d0%b7%d0%b5%d0%bb%d0%b5%d0%bd%d1%96-%d0%b2%d0%b8%d0%bd%d0%b0-%d0%b2%d1%96%d0%b4-%d0%b7%d0%b5%d0%bb%d0%b5%d0%bd%d0%be%d0%b3%d0%be-%d1%81%d0%be%d0%bc%d0%b5%d0%bb%d1%8c%d1%94/"
+      },
+      "886683d6e383d001": {
+        "city": "dnipro",
+        "city_name": "Дніпро",
+        "date_text": "28.06, Нд, 15:00",
+        "event_date": "2026-06-28",
+        "event_type": "Дегустація",
+        "id": "886683d6e383d001",
+        "price": "3700 грн",
+        "title": "Шампань наосліп",
+        "url": "https://badboy.ua/product/%d1%88%d0%b0%d0%bc%d0%bf%d0%b0%d0%bd%d1%8c-%d0%bd%d0%b0%d0%be%d1%81%d0%bb%d1%96%d0%bf/"
+      },
+      "89c9e2460728b006": {
+        "city": "dnipro",
+        "city_name": "Дніпро",
+        "date_text": "13.06, Сб, 19:00",
+        "event_date": "2026-06-13",
+        "event_type": "Дегустація",
+        "id": "89c9e2460728b006",
+        "price": "1000 грн",
+        "title": "Винне казино",
+        "url": "https://badboy.ua/product/%d0%b2%d0%b8%d0%bd%d0%bd%d0%b5-%d0%ba%d0%b0%d0%b7%d0%b8%d0%bd%d0%be-2/"
+      },
+      "ee509eae951ee0c0": {
+        "city": "dnipro",
+        "city_name": "Дніпро",
+        "date_text": "26.06, Пт, 19:00",
+        "event_date": "2026-06-26",
+        "event_type": "Дегустація",
+        "id": "ee509eae951ee0c0",
+        "price": "3500 грн",
+        "title": "Різноманіття віскі",
+        "url": "https://badboy.ua/product/%d1%80%d1%96%d0%b7%d0%bd%d0%be%d0%bc%d0%b0%d0%bd%d1%96%d1%82%d1%82%d1%8f-%d0%b2%d1%96%d1%81%d0%ba%d1%96/"
+      }
+    },
+    "kyiv": {
+      "2b6024b4b56cc4df": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "21.06, Нд, 19:00",
+        "event_date": "2026-06-21",
+        "event_type": "Дегустації",
+        "id": "2b6024b4b56cc4df",
+        "price": "4500 грн",
+        "title": "Шампань поважного віку",
+        "url": "https://badboy.ua/product/%d1%88%d0%b0%d0%bc%d0%bf%d0%b0%d0%bd%d1%8c-%d0%bf%d0%be%d0%b2%d0%b0%d0%b6%d0%bd%d0%be%d0%b3%d0%be-%d0%b2%d1%96%d0%ba%d1%83/"
+      },
+      "2c92f26d56419069": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "20.06, Сб, 18:00",
+        "event_date": "2026-06-20",
+        "event_type": "Дегустації",
+        "id": "2c92f26d56419069",
+        "price": "8900 грн",
+        "title": "Cheval Blanc та його бідні родичі",
+        "url": "https://badboy.ua/product/cheval-blanc-%d1%82%d0%b0-%d0%b9%d0%be%d0%b3%d0%be-%d0%b1%d1%96%d0%b4%d0%bd%d1%96-%d1%80%d0%be%d0%b4%d0%b8%d1%87%d1%96/"
+      },
+      "6d1418ab163a7d3f": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "11.06, Чт, 19:00",
+        "event_date": "2026-06-11",
+        "event_type": "Дегустації",
+        "id": "6d1418ab163a7d3f",
+        "price": "2200 грн",
+        "title": "Pinot Noir, що живе за межами Бургундії",
+        "url": "https://badboy.ua/product/pinot-noir-%d1%89%d0%be-%d0%b6%d0%b8%d0%b2%d0%b5-%d0%b7%d0%b0-%d0%bc%d0%b5%d0%b6%d0%b0%d0%bc%d0%b8-%d0%b1%d1%83%d1%80%d0%b3%d1%83%d0%bd%d0%b4%d1%96%d1%97/"
+      },
+      "7e3ccc95acbcaed3": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "25.06, Чт, 19:00",
+        "event_date": "2026-06-25",
+        "event_type": "Дегустації",
+        "id": "7e3ccc95acbcaed3",
+        "price": "1500 грн",
+        "title": "Biologist. Дегустація з виноробом",
+        "url": "https://badboy.ua/product/biologist-%d0%b4%d0%b5%d0%b3%d1%83%d1%81%d1%82%d0%b0%d1%86%d1%96%d1%8f-%d0%b7-%d0%b2%d0%b8%d0%bd%d0%be%d1%80%d0%be%d0%b1%d0%be%d0%bc/"
+      },
+      "91989afe4dcd4cd5": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "28.06, Нд, 18:00",
+        "event_date": "2026-06-28",
+        "event_type": "Дегустації",
+        "id": "91989afe4dcd4cd5",
+        "price": "3900 грн",
+        "title": "Що ти знаєш про Шампань від Henri Giraud?",
+        "url": "https://badboy.ua/product/%d1%89%d0%be-%d1%82%d0%b8-%d0%b7%d0%bd%d0%b0%d1%94%d1%88-%d0%bf%d1%80%d0%be-%d1%88%d0%b0%d0%bc%d0%bf%d0%b0%d0%bd%d1%8c-%d0%b2%d1%96%d0%b4-henri-giraud/"
+      },
+      "b8a31e82b4cf2e04": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "16.06, Вт, 19:00",
+        "event_date": "2026-06-16",
+        "event_type": "Дегустації",
+        "id": "b8a31e82b4cf2e04",
+        "price": "800 грн",
+        "title": "Винне казино на барі",
+        "url": "https://badboy.ua/product/%d0%b2%d0%b8%d0%bd%d0%bd%d0%b5-%d0%ba%d0%b0%d0%b7%d0%b8%d0%bd%d0%be-%d0%bd%d0%b0-%d0%b1%d0%b0%d1%80%d1%96/"
+      },
+      "e21693678f0e0fa0": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "17.06, Ср, 19:00",
+        "event_date": "2026-06-17",
+        "event_type": "Дегустації",
+        "id": "e21693678f0e0fa0",
+        "price": "2800 грн",
+        "title": "Прошуто&Co",
+        "url": "https://badboy.ua/product/%d0%bf%d1%80%d0%be%d1%88%d1%83%d1%82%d0%beco/"
+      },
+      "f0a9c766c6f4a030": {
+        "city": "kyiv",
+        "city_name": "Київ",
+        "date_text": "14.06, Нд, 18:00",
+        "event_date": "2026-06-14",
+        "event_type": "Дегустації",
+        "id": "f0a9c766c6f4a030",
+        "price": "1800 грн",
+        "title": "Міжконтинентальний Sauvignon Blanc",
+        "url": "https://badboy.ua/product/%d0%bc%d1%96%d0%b6%d0%ba%d0%be%d0%bd%d1%82%d0%b8%d0%bd%d0%b5%d0%bd%d1%82%d0%b0%d0%bb%d1%8c%d0%bd%d0%b8%d0%b9-sauvignon-blanc/"
+      }
+    },
+    "lviv": {
+      "22e805f305e12042": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "18.06, Чт, 19:00",
+        "event_date": "2026-06-18",
+        "event_type": "Дегустація",
+        "id": "22e805f305e12042",
+        "price": "1000 грн",
+        "title": "Дегустація пива. Епізод 3: Бельгія",
+        "url": "https://badboy.ua/product/%d0%b4%d0%b5%d0%b3%d1%83%d1%81%d1%82%d0%b0%d1%86%d1%96%d1%8f-%d0%bf%d0%b8%d0%b2%d0%b0-%d0%b5%d0%bf%d1%96%d0%b7%d0%be%d0%b4-3-%d0%b1%d0%b5%d0%bb%d1%8c%d0%b3%d1%96%d1%8f/"
+      },
+      "4cc2683fdb450bdb": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "13.06, Сб, 12:00",
+        "event_date": "2026-06-13",
+        "event_type": "Дегустація",
+        "id": "4cc2683fdb450bdb",
+        "price": "1000 грн",
+        "title": "Анатомія холодної кави",
+        "url": "https://badboy.ua/product/%d0%b0%d0%bd%d0%b0%d1%82%d0%be%d0%bc%d1%96%d1%8f-%d1%85%d0%be%d0%bb%d0%be%d0%b4%d0%bd%d0%be%d1%97-%d0%ba%d0%b0%d0%b2%d0%b8/"
+      },
+      "77fd7618c08e31ee": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "11.06, Чт, 19:00",
+        "event_date": "2026-06-11",
+        "event_type": "Дегустація",
+        "id": "77fd7618c08e31ee",
+        "price": "1600 грн",
+        "title": "Пет-Нат: справжнє літнє вино",
+        "url": "https://badboy.ua/product/%d0%bf%d0%b5%d1%82-%d0%bd%d0%b0%d1%82-%d1%81%d0%bf%d1%80%d0%b0%d0%b2%d0%b6%d0%bd%d1%94-%d0%bb%d1%96%d1%82%d0%bd%d1%94-%d0%b2%d0%b8%d0%bd%d0%be/"
+      },
+      "8f7129cec1ed5eda": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "28.06, Нд, 18:00",
+        "event_date": "2026-06-28",
+        "event_type": "Дегустація",
+        "id": "8f7129cec1ed5eda",
+        "price": "1500 грн",
+        "title": "Винне казино з бульбашками",
+        "url": "https://badboy.ua/product/%d0%b2%d0%b8%d0%bd%d0%bd%d0%b5-%d0%ba%d0%b0%d0%b7%d0%b8%d0%bd%d0%be-%d0%b7-%d0%b1%d1%83%d0%bb%d1%8c%d0%b1%d0%b0%d1%88%d0%ba%d0%b0%d0%bc%d0%b8/"
+      },
+      "c80901e3d3bfcbb4": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "25.06, Чт, 19:00",
+        "event_date": "2026-06-25",
+        "event_type": "Дегустація",
+        "id": "c80901e3d3bfcbb4",
+        "price": "2600 грн",
+        "title": "Віскі, що жив у винній бочці: фініш, який змінює все",
+        "url": "https://badboy.ua/product/%d0%b2%d1%96%d1%81%d0%ba%d1%96-%d1%89%d0%be-%d0%b6%d0%b8%d0%b2-%d1%83-%d0%b2%d0%b8%d0%bd%d0%bd%d1%96%d0%b9-%d0%b1%d0%be%d1%87%d1%86%d1%96-%d1%84%d1%96%d0%bd%d1%96%d1%88-%d1%8f%d0%ba%d0%b8%d0%b9/"
+      },
+      "c85ff7f092e726cd": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "14.06, Нд, 18:00",
+        "event_date": "2026-06-14",
+        "event_type": "Дегустація",
+        "id": "c85ff7f092e726cd",
+        "price": "2200 грн",
+        "title": "Коктейльний майстер-клас: gin experience",
+        "url": "https://badboy.ua/product/%d0%ba%d0%be%d0%ba%d1%82%d0%b5%d0%b9%d0%bb%d1%8c%d0%bd%d0%b8%d0%b9-%d0%bc%d0%b0%d0%b9%d1%81%d1%82%d0%b5%d1%80-%d0%ba%d0%bb%d0%b0%d1%81-gin-experience/"
+      },
+      "e0498ed443411df9": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "24.06, Ср, 19:00",
+        "event_date": "2026-06-24",
+        "event_type": "Дегустація",
+        "id": "e0498ed443411df9",
+        "price": "1300 грн",
+        "title": "Німеччина та Австрія: що спільного у них із вином?",
+        "url": "https://badboy.ua/product/%d0%bd%d1%96%d0%bc%d0%b5%d1%87%d1%87%d0%b8%d0%bd%d0%b0-%d1%82%d0%b0-%d0%b0%d0%b2%d1%81%d1%82%d1%80%d1%96%d1%8f-%d1%89%d0%be-%d1%81%d0%bf%d1%96%d0%bb%d1%8c%d0%bd%d0%be%d0%b3%d0%be-%d1%83-%d0%bd%d0%b8/"
+      }
+    }
+  },
+  "subscribers": {},
+  "telegram_update_offset": null
+}
