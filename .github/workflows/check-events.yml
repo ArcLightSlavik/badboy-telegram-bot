@@ -2,7 +2,7 @@ name: Check BadBoy Events
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -30,14 +30,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Run tests
+        run: pytest -q
+
       - name: Check events
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_TARGET_CHAT_ID_LVIV: ${{ secrets.TELEGRAM_TARGET_CHAT_ID_LVIV }}
-          TELEGRAM_TARGET_CHAT_ID_KYIV: ${{ secrets.TELEGRAM_TARGET_CHAT_ID_KYIV }}
-          TELEGRAM_TARGET_CHAT_ID_DNIPRO: ${{ secrets.TELEGRAM_TARGET_CHAT_ID_DNIPRO }}
           TELEGRAM_TARGET_CHAT_ID: ${{ secrets.TELEGRAM_TARGET_CHAT_ID }}
-          FOLLOW_CITIES: ${{ vars.FOLLOW_CITIES || 'lviv,kyiv,dnipro' }}
           TIMEZONE: Europe/Kyiv
         run: python badboy_bot.py
 

@@ -17,16 +17,9 @@ from bs4 import BeautifulSoup
 
 
 BASE_URL = "https://badboy.ua"
-CITY_URLS = {
-    "kyiv": f"{BASE_URL}/catalog/events/kyiv/",
-    "lviv": f"{BASE_URL}/catalog/events/lviv/",
-    "dnipro": f"{BASE_URL}/catalog/events/dnipro/",
-}
-CITY_NAMES = {
-    "kyiv": "Київ",
-    "lviv": "Львів",
-    "dnipro": "Дніпро",
-}
+LVIV_EVENTS_URL = f"{BASE_URL}/catalog/events/lviv/"
+CITY = "lviv"
+CITY_NAME = "Львів"
 UA_TIMEZONE = ZoneInfo(os.getenv("TIMEZONE", "Europe/Kyiv"))
 STATE_PATH = Path(os.getenv("STATE_PATH", "state.json"))
 HTTP_TIMEOUT_SECONDS = int(os.getenv("HTTP_TIMEOUT_SECONDS", "20"))
@@ -51,26 +44,13 @@ def main() -> None:
     state = load_state()
     telegram = TelegramClient(os.getenv("TELEGRAM_BOT_TOKEN"))
 
-    if telegram.enabled:
-        process_telegram_commands(telegram, state)
-    else:
+    if not telegram.enabled:
         print("TELEGRAM_BOT_TOKEN is not set; running in dry-run mode.")
 
-    cities_to_check = cities_from_env("FOLLOW_CITIES") | cities_with_subscribers(state)
-    if not cities_to_check:
-        cities_to_check = {"lviv"}
-        print("No followed cities configured yet; checking lviv as the default baseline.")
+    events = fetch_lviv_events()
+    print(f"Fetched {len(events)} events for {CITY}.")
 
-    all_events: dict[str, list[Event]] = {}
-    for city in sorted(cities_to_check):
-        events = fetch_city_events(city)
-        all_events[city] = events
-        print(f"Fetched {len(events)} events for {city}.")
-
-    destinations = build_destinations(state)
-    for city, events in all_events.items():
-        sync_city_events(city, events, state, telegram, destinations)
-
+    sync_lviv_events(events, state, telegram, build_destinations())
     prune_old_completed_events(state)
     save_state(state)
 
@@ -78,25 +58,31 @@ def main() -> None:
 def load_state() -> dict[str, Any]:
     if not STATE_PATH.exists():
         return default_state()
+
     with STATE_PATH.open("r", encoding="utf-8") as file:
-        state = json.load(file)
-    merged = default_state()
-    merged.update(state)
-    merged["subscribers"] = state.get("subscribers", {})
-    merged["seen_events"] = state.get("seen_events", {})
-    merged["completed_events"] = state.get("completed_events", {})
-    merged["bootstrapped_cities"] = state.get("bootstrapped_cities", [])
-    return merged
+        raw_state = json.load(file)
+
+    state = default_state()
+    state["completed_events"] = raw_state.get("completed_events", {})
+
+    raw_seen_events = raw_state.get("seen_events", {})
+    if isinstance(raw_seen_events.get(CITY), dict):
+        state["seen_events"] = {CITY: raw_seen_events[CITY]}
+    elif isinstance(raw_seen_events, dict):
+        state["seen_events"] = {CITY: raw_seen_events}
+
+    state["bootstrapped"] = bool(raw_state.get("bootstrapped")) or CITY in raw_state.get(
+        "bootstrapped_cities", []
+    )
+    return state
 
 
 def default_state() -> dict[str, Any]:
     return {
-        "schema_version": 1,
-        "telegram_update_offset": None,
-        "subscribers": {},
-        "seen_events": {},
+        "schema_version": 2,
+        "bootstrapped": False,
+        "seen_events": {CITY: {}},
         "completed_events": {},
-        "bootstrapped_cities": [],
     }
 
 
@@ -107,40 +93,10 @@ def save_state(state: dict[str, Any]) -> None:
     )
 
 
-def cities_from_env(name: str) -> set[str]:
-    raw = os.getenv(name, "")
-    cities = {normalize_city(item) for item in raw.split(",") if item.strip()}
-    return {city for city in cities if city in CITY_URLS}
-
-
-def normalize_city(value: str) -> str:
-    normalized = value.strip().lower()
-    aliases = {
-        "kiev": "kyiv",
-        "київ": "kyiv",
-        "киев": "kyiv",
-        "львів": "lviv",
-        "львов": "lviv",
-        "дніпро": "dnipro",
-        "днепр": "dnipro",
-    }
-    return aliases.get(normalized, normalized)
-
-
-def cities_with_subscribers(state: dict[str, Any]) -> set[str]:
-    cities: set[str] = set()
-    for followed in state.get("subscribers", {}).values():
-        cities.update(city for city in followed if city in CITY_URLS)
-    return cities
-
-
-def fetch_city_events(city: str) -> list[Event]:
-    if city not in CITY_URLS:
-        raise ValueError(f"Unsupported city: {city}")
-
+def fetch_lviv_events() -> list[Event]:
     events: list[Event] = []
     seen_urls: set[str] = set()
-    next_url: str | None = CITY_URLS[city]
+    next_url: str | None = LVIV_EVENTS_URL
 
     for _ in range(MAX_PAGES):
         if not next_url:
@@ -151,7 +107,7 @@ def fetch_city_events(city: str) -> list[Event]:
         soup = BeautifulSoup(response.text, "html.parser")
 
         for card in soup.select("article.ticket-card"):
-            event = parse_event_card(card, city)
+            event = parse_event_card(card)
             if event and event.url not in seen_urls:
                 events.append(event)
                 seen_urls.add(event.url)
@@ -162,7 +118,7 @@ def fetch_city_events(city: str) -> list[Event]:
     return events
 
 
-def parse_event_card(card: BeautifulSoup, city: str) -> Event | None:
+def parse_event_card(card: BeautifulSoup) -> Event | None:
     title_tag = card.select_one(".ticket-card__title")
     date_tag = card.select_one(".ticket-card__datetime")
     price_tag = card.select_one(".ticket-card__price")
@@ -178,9 +134,9 @@ def parse_event_card(card: BeautifulSoup, city: str) -> Event | None:
     event_date = parse_event_date(date_text)
 
     return Event(
-        id=event_id(city, url),
-        city=city,
-        city_name=CITY_NAMES[city],
+        id=event_id(url),
+        city=CITY,
+        city_name=CITY_NAME,
         title=title,
         url=url,
         date_text=date_text,
@@ -200,8 +156,8 @@ def clean_text(value: str) -> str:
     return re.sub(r"\s+", " ", unescape(value)).strip()
 
 
-def event_id(city: str, url: str) -> str:
-    digest = hashlib.sha1(f"{city}:{url}".encode("utf-8")).hexdigest()
+def event_id(url: str) -> str:
+    digest = hashlib.sha1(f"{CITY}:{url}".encode("utf-8")).hexdigest()
     return digest[:16]
 
 
@@ -220,17 +176,15 @@ def parse_event_date(date_text: str) -> date | None:
     return parsed
 
 
-def sync_city_events(
-    city: str,
+def sync_lviv_events(
     events: list[Event],
     state: dict[str, Any],
     telegram: "TelegramClient",
-    destinations: dict[str, set[str]],
+    destinations: set[str],
 ) -> None:
-    seen_events = state.setdefault("seen_events", {}).setdefault(city, {})
+    seen_events = state.setdefault("seen_events", {}).setdefault(CITY, {})
     completed_events = state.setdefault("completed_events", {})
-    bootstrapped_cities = set(state.setdefault("bootstrapped_cities", []))
-    is_bootstrapped = city in bootstrapped_cities
+    is_bootstrapped = bool(state.get("bootstrapped"))
 
     current_ids = {event.id for event in events}
     for event_id_to_remove in list(seen_events):
@@ -246,40 +200,42 @@ def sync_city_events(
 
         if is_new and (is_bootstrapped or NOTIFY_ON_FIRST_RUN):
             tickets_left = safe_fetch_tickets_left(event.url)
-            send_to_city_destinations(
-                city,
+            send_to_destinations(
                 destinations,
                 telegram,
                 format_new_event_message(event, tickets_left),
             )
 
-    if city not in bootstrapped_cities:
-        bootstrapped_cities.add(city)
-        state["bootstrapped_cities"] = sorted(bootstrapped_cities)
+    if not is_bootstrapped:
+        state["bootstrapped"] = True
 
-    send_today_reminders(city, state, telegram, destinations)
+    send_today_reminders(state, telegram, destinations)
 
 
 def send_today_reminders(
-    city: str,
     state: dict[str, Any],
     telegram: "TelegramClient",
-    destinations: dict[str, set[str]],
+    destinations: set[str],
 ) -> None:
     today = datetime.now(UA_TIMEZONE).date().isoformat()
-    seen_events = state.setdefault("seen_events", {}).setdefault(city, {})
+    seen_events = state.setdefault("seen_events", {}).setdefault(CITY, {})
 
     for event_id_value, event_data in list(seen_events.items()):
         if event_data.get("event_date") != today:
             continue
 
-        if not destinations.get(city):
+        tickets_left = fetch_tickets_left(event_data["url"])
+        if tickets_left == 0:
+            print(f"Skipping sold-out event today: {event_data.get('title', event_id_value)}")
+            del seen_events[event_id_value]
+            state.setdefault("completed_events", {})[event_id_value] = today
             continue
 
-        tickets_left = fetch_tickets_left(event_data["url"])
+        if not destinations:
+            continue
+
         event = Event(**event_data)
-        sent = send_to_city_destinations(
-            city,
+        sent = send_to_destinations(
             destinations,
             telegram,
             format_today_message(event, tickets_left),
@@ -292,15 +248,18 @@ def send_today_reminders(
 def fetch_tickets_left(url: str) -> int | None:
     response = requests.get(url, timeout=HTTP_TIMEOUT_SECONDS)
     response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
+    return parse_tickets_left(response.text)
 
+
+def parse_tickets_left(html: str) -> int | None:
+    soup = BeautifulSoup(html, "html.parser")
     quantity_info = soup.select_one(".ticket__quantity-info")
     if quantity_info:
         match = re.search(r"Залишилося\s+(\d+)", quantity_info.get_text(" ", strip=True))
         if match:
             return int(match.group(1))
 
-    match = re.search(r'"quantity"\s*:\s*(\d+)', response.text)
+    match = re.search(r'"quantity"\s*:\s*(\d+)', html)
     return int(match.group(1)) if match else None
 
 
@@ -312,40 +271,28 @@ def safe_fetch_tickets_left(url: str) -> int | None:
         return None
 
 
-def build_destinations(state: dict[str, Any]) -> dict[str, set[str]]:
-    destinations: dict[str, set[str]] = {city: set() for city in CITY_URLS}
-
-    for chat_id, cities in state.get("subscribers", {}).items():
-        for city in cities:
-            if city in destinations:
-                destinations[city].add(str(chat_id))
-
-    for city in CITY_URLS:
-        target_chat_id = os.getenv(f"TELEGRAM_TARGET_CHAT_ID_{city.upper()}")
-        if target_chat_id:
-            destinations[city].add(target_chat_id)
-
-    generic_target_chat_id = os.getenv("TELEGRAM_TARGET_CHAT_ID")
-    if generic_target_chat_id:
-        generic_target_cities = cities_from_env("FOLLOW_CITIES") or {"lviv"}
-        for city in generic_target_cities:
-            destinations[city].add(generic_target_chat_id)
-
-    return destinations
+def build_destinations() -> set[str]:
+    return chat_ids_from_env("TELEGRAM_TARGET_CHAT_ID_LVIV") | chat_ids_from_env(
+        "TELEGRAM_TARGET_CHAT_ID"
+    )
 
 
-def send_to_city_destinations(
-    city: str,
-    destinations: dict[str, set[str]],
+def chat_ids_from_env(name: str) -> set[str]:
+    raw = os.getenv(name, "")
+    return {chat_id.strip() for chat_id in raw.split(",") if chat_id.strip()}
+
+
+def send_to_destinations(
+    destinations: set[str],
     telegram: "TelegramClient",
     text: str,
 ) -> bool:
     sent_any = False
-    for chat_id in sorted(destinations.get(city, [])):
+    for chat_id in sorted(destinations):
         try:
             telegram.send_message(chat_id, text)
         except Exception as error:
-            print(f"Failed to send {city} message to {chat_id}: {error}")
+            print(f"Failed to send message to {chat_id}: {error}")
             continue
         sent_any = True
     return sent_any
@@ -399,106 +346,11 @@ def prune_old_completed_events(state: dict[str, Any]) -> None:
             del completed_events[event_id_value]
 
 
-def process_telegram_commands(telegram: "TelegramClient", state: dict[str, Any]) -> None:
-    offset = state.get("telegram_update_offset")
-    updates = telegram.get_updates(offset)
-
-    for update in updates:
-        state["telegram_update_offset"] = update["update_id"] + 1
-        message = update.get("message") or update.get("channel_post")
-        if not message:
-            continue
-
-        text = message.get("text", "").strip()
-        chat_id = str(message.get("chat", {}).get("id", ""))
-        if not text or not chat_id:
-            continue
-
-        response = handle_command(text, chat_id, state)
-        if response:
-            telegram.send_message(chat_id, response)
-
-
-def handle_command(text: str, chat_id: str, state: dict[str, Any]) -> str | None:
-    command, *args = text.split()
-    command = command.split("@", 1)[0].lower()
-
-    subscribers = state.setdefault("subscribers", {})
-    followed = set(subscribers.get(chat_id, []))
-
-    if command in {"/start", "/help"}:
-        return (
-            "Команди:\n"
-            "/follow lviv|kyiv|dnipro\n"
-            "/unfollow lviv|kyiv|dnipro\n"
-            "/followall\n"
-            "/unfollowall\n"
-            "/cities"
-        )
-
-    if command == "/cities":
-        if not followed:
-            return "Ти поки не слідкуєш за жодним містом."
-        city_names = ", ".join(CITY_NAMES[city] for city in sorted(followed))
-        return f"Слідкую за: {city_names}"
-
-    if command == "/followall":
-        subscribers[chat_id] = sorted(CITY_URLS)
-        return "Готово. Слідкую за Київ, Львів, Дніпро."
-
-    if command == "/unfollowall":
-        subscribers.pop(chat_id, None)
-        return "Готово. Відписав цей чат від усіх міст."
-
-    if command.startswith("/follow_"):
-        city = normalize_city(command.removeprefix("/follow_"))
-    elif command == "/follow" and args:
-        city = normalize_city(args[0])
-    else:
-        city = ""
-
-    if city in CITY_URLS:
-        followed.add(city)
-        subscribers[chat_id] = sorted(followed)
-        return f"Готово. Слідкую за {CITY_NAMES[city]}."
-
-    if command.startswith("/unfollow_"):
-        city = normalize_city(command.removeprefix("/unfollow_"))
-    elif command == "/unfollow" and args:
-        city = normalize_city(args[0])
-    else:
-        city = ""
-
-    if city in CITY_URLS:
-        followed.discard(city)
-        if followed:
-            subscribers[chat_id] = sorted(followed)
-        else:
-            subscribers.pop(chat_id, None)
-        return f"Готово. Більше не слідкую за {CITY_NAMES[city]}."
-
-    return None
-
-
 class TelegramClient:
     def __init__(self, token: str | None) -> None:
         self.token = token
         self.enabled = bool(token)
         self.api_base = f"https://api.telegram.org/bot{token}" if token else ""
-
-    def get_updates(self, offset: int | None) -> list[dict[str, Any]]:
-        params: dict[str, Any] = {"timeout": 0}
-        if offset is not None:
-            params["offset"] = offset
-        response = requests.get(
-            f"{self.api_base}/getUpdates",
-            params=params,
-            timeout=HTTP_TIMEOUT_SECONDS,
-        )
-        payload = parse_telegram_response(response, "getUpdates")
-        if not payload.get("ok"):
-            raise RuntimeError(f"Telegram getUpdates failed: {payload}")
-        return payload.get("result", [])
 
     def send_message(self, chat_id: str, text: str) -> None:
         if not self.enabled:
