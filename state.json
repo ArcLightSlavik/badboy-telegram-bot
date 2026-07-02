@@ -1,55 +1,76 @@
 {
   "bootstrapped": true,
   "completed_events": {
-    "22e805f305e12042": "2026-06-18",
-    "77fd7618c08e31ee": "2026-06-11"
+    "22e805f305e12042": "2026-06-18"
   },
   "schema_version": 2,
   "seen_events": {
     "lviv": {
-      "8f7129cec1ed5eda": {
+      "06c32efa5cb83817": {
         "city": "lviv",
         "city_name": "Львів",
-        "date_text": "28.06, Нд, 18:00",
-        "event_date": "2026-06-28",
+        "date_text": "17.07, Пт, 19:00",
+        "event_date": "2026-07-17",
         "event_type": "Дегустація",
-        "id": "8f7129cec1ed5eda",
+        "id": "06c32efa5cb83817",
+        "price": "1700 грн",
+        "title": "Pieropan — сім'я, що \"заснувала\" Соаве",
+        "url": "https://badboy.ua/product/pieropan-%d1%81%d1%96%d0%bc%d1%8f-%d1%89%d0%be-%d0%b7%d0%b0%d1%81%d0%bd%d1%83%d0%b2%d0%b0%d0%bb%d0%b0-%d1%81%d0%be%d0%b0%d0%b2%d0%b5/"
+      },
+      "9e6e0d8831265f94": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "29.07, Ср, 19:00",
+        "event_date": "2026-07-29",
+        "event_type": "Дегустація",
+        "id": "9e6e0d8831265f94",
+        "price": "1290 грн",
+        "title": "Це твоя Сицилія",
+        "url": "https://badboy.ua/product/%d1%86%d0%b5-%d1%82%d0%b2%d0%be%d1%8f-%d1%81%d0%b8%d1%86%d0%b8%d0%bb%d1%96%d1%8f/"
+      },
+      "a26cf3dd2c0700cb": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "24.07, Пт, 19:00",
+        "event_date": "2026-07-24",
+        "event_type": "Дегустація",
+        "id": "a26cf3dd2c0700cb",
+        "price": "2200 грн",
+        "title": "Маркізи Антінорі",
+        "url": "https://badboy.ua/product/%d0%bc%d0%b0%d1%80%d0%ba%d1%96%d0%b7%d0%b8-%d0%b0%d0%bd%d1%82%d1%96%d0%bd%d0%be%d1%80%d1%96/"
+      },
+      "bb3d1017151bc73d": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "30.07, Чт, 19:00",
+        "event_date": "2026-07-30",
+        "event_type": "Дегустація",
+        "id": "bb3d1017151bc73d",
+        "price": "1200 грн",
+        "title": "Baladin — пиво, що спантеличує",
+        "url": "https://badboy.ua/product/baladin-%d0%bf%d0%b8%d0%b2%d0%be-%d1%89%d0%be-%d1%81%d0%bf%d0%b0%d0%bd%d1%82%d0%b5%d0%bb%d0%b8%d1%87%d1%83%d1%94/"
+      },
+      "d38d701349ae944e": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "25.07, Сб, 19:00",
+        "event_date": "2026-07-25",
+        "event_type": "Дегустація",
+        "id": "d38d701349ae944e",
+        "price": "2500 грн",
+        "title": "Франчакорта: Шампань по-італійськи",
+        "url": "https://badboy.ua/product/%d1%84%d1%80%d0%b0%d0%bd%d1%87%d0%b0%d0%ba%d0%be%d1%80%d1%82%d0%b0-%d1%88%d0%b0%d0%bc%d0%bf%d0%b0%d0%bd%d1%8c-%d0%bf%d0%be-%d1%96%d1%82%d0%b0%d0%bb%d1%96%d0%b9%d1%81%d1%8c%d0%ba%d0%b8/"
+      },
+      "d84702ac88feaa8b": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "16.07, Чт, 19:00",
+        "event_date": "2026-07-16",
+        "event_type": "Дегустація",
+        "id": "d84702ac88feaa8b",
         "price": "1500 грн",
-        "title": "Винне казино з бульбашками",
-        "url": "https://badboy.ua/product/%d0%b2%d0%b8%d0%bd%d0%bd%d0%b5-%d0%ba%d0%b0%d0%b7%d0%b8%d0%bd%d0%be-%d0%b7-%d0%b1%d1%83%d0%bb%d1%8c%d0%b1%d0%b0%d1%88%d0%ba%d0%b0%d0%bc%d0%b8/"
-      },
-      "b4f853f318bf8271": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "27.06, Сб, 15:00",
-        "event_date": "2026-06-27",
-        "event_type": "Дегустація",
-        "id": "b4f853f318bf8271",
-        "price": "999 грн",
-        "title": "Велика дегустація американських вин. Львів",
-        "url": "https://badboy.ua/product/%d0%b2%d0%b5%d0%bb%d0%b8%d0%ba%d0%b0-%d0%b4%d0%b5%d0%b3%d1%83%d1%81%d1%82%d0%b0%d1%86%d1%96%d1%8f-%d0%b0%d0%bc%d0%b5%d1%80%d0%b8%d0%ba%d0%b0%d0%bd%d1%81%d1%8c%d0%ba%d0%b8%d1%85-%d0%b2%d0%b8%d0%bd-3/"
-      },
-      "c80901e3d3bfcbb4": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "25.06, Чт, 19:00",
-        "event_date": "2026-06-25",
-        "event_type": "Дегустація",
-        "id": "c80901e3d3bfcbb4",
-        "price": "2600 грн",
-        "title": "Віскі, що жив у винній бочці: фініш, який змінює все",
-        "url": "https://badboy.ua/product/%d0%b2%d1%96%d1%81%d0%ba%d1%96-%d1%89%d0%be-%d0%b6%d0%b8%d0%b2-%d1%83-%d0%b2%d0%b8%d0%bd%d0%bd%d1%96%d0%b9-%d0%b1%d0%be%d1%87%d1%86%d1%96-%d1%84%d1%96%d0%bd%d1%96%d1%88-%d1%8f%d0%ba%d0%b8%d0%b9/"
-      },
-      "e0498ed443411df9": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "24.06, Ср, 19:00",
-        "event_date": "2026-06-24",
-        "event_type": "Дегустація",
-        "id": "e0498ed443411df9",
-        "price": "1300 грн",
-        "title": "Німеччина та Австрія: що спільного у них із вином?",
-        "url": "https://badboy.ua/product/%d0%bd%d1%96%d0%bc%d0%b5%d1%87%d1%87%d0%b8%d0%bd%d0%b0-%d1%82%d0%b0-%d0%b0%d0%b2%d1%81%d1%82%d1%80%d1%96%d1%8f-%d1%89%d0%be-%d1%81%d0%bf%d1%96%d0%bb%d1%8c%d0%bd%d0%be%d0%b3%d0%be-%d1%83-%d0%bd%d0%b8/"
+        "title": "Білі. Класичні. Але італійські",
+        "url": "https://badboy.ua/product/%d0%b1%d1%96%d0%bb%d1%96-%d0%ba%d0%bb%d0%b0%d1%81%d0%b8%d1%87%d0%bd%d1%96-%d0%b0%d0%bb%d0%b5-%d1%96%d1%82%d0%b0%d0%bb%d1%96%d0%b9%d1%81%d1%8c%d0%ba%d1%96/"
       }
     }
   }
