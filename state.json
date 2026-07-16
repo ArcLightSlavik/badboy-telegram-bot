@@ -1,20 +1,11 @@
 {
   "bootstrapped": true,
-  "completed_events": {},
+  "completed_events": {
+    "06c32efa5cb83817": "2026-07-17"
+  },
   "schema_version": 2,
   "seen_events": {
     "lviv": {
-      "06c32efa5cb83817": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "17.07, Пт, 19:00",
-        "event_date": "2026-07-17",
-        "event_type": "Дегустація",
-        "id": "06c32efa5cb83817",
-        "price": "1700 грн",
-        "title": "Pieropan — сім'я, що \"заснувала\" Соаве",
-        "url": "https://badboy.ua/product/pieropan-%d1%81%d1%96%d0%bc%d1%8f-%d1%89%d0%be-%d0%b7%d0%b0%d1%81%d0%bd%d1%83%d0%b2%d0%b0%d0%bb%d0%b0-%d1%81%d0%be%d0%b0%d0%b2%d0%b5/"
-      },
       "539980a4904f1859": {
         "city": "lviv",
         "city_name": "Львів",
