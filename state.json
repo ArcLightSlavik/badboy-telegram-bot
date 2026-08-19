@@ -1,6 +1,8 @@
 {
   "bootstrapped": true,
-  "completed_events": {},
+  "completed_events": {
+    "8cce2aa5f82bbb2d": "2026-08-20"
+  },
   "schema_version": 2,
   "seen_events": {
     "lviv": {
@@ -14,17 +16,6 @@
         "price": "3200 грн",
         "title": "Tamdhu: народжені в хересі",
         "url": "https://badboy.ua/product/tamdhu-%d0%bd%d0%b0%d1%80%d0%be%d0%b4%d0%b6%d0%b5%d0%bd%d1%96-%d0%b2-%d1%85%d0%b5%d1%80%d0%b5%d1%81%d1%96/"
-      },
-      "8cce2aa5f82bbb2d": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "20.08, Чт, 19:00",
-        "event_date": "2026-08-20",
-        "event_type": "Дегустація",
-        "id": "8cce2aa5f82bbb2d",
-        "price": "1200 грн",
-        "title": "Совіньйони з усього світу",
-        "url": "https://badboy.ua/product/%d1%81%d0%be%d0%b2%d1%96%d0%bd%d1%8c%d0%b9%d0%be%d0%bd%d0%b8-%d0%b7-%d1%83%d1%81%d1%8c%d0%be%d0%b3%d0%be-%d1%81%d0%b2%d1%96%d1%82%d1%83/"
       },
       "ebe853fbe8802bd4": {
         "city": "lviv",
