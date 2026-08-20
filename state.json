@@ -1,7 +1,8 @@
 {
   "bootstrapped": true,
   "completed_events": {
-    "8cce2aa5f82bbb2d": "2026-08-20"
+    "8cce2aa5f82bbb2d": "2026-08-20",
+    "fb15066f70b7e813": "2026-08-21"
   },
   "schema_version": 2,
   "seen_events": {
@@ -27,17 +28,6 @@
         "price": "1000 грн",
         "title": "Пиво. Епізод 4: Велика Британія та США",
         "url": "https://badboy.ua/product/%d0%bf%d0%b8%d0%b2%d0%be-%d0%b5%d0%bf%d1%96%d0%b7%d0%be%d0%b4-4-%d0%b2%d0%b5%d0%bb%d0%b8%d0%ba%d0%b0-%d0%b1%d1%80%d0%b8%d1%82%d0%b0%d0%bd%d1%96%d1%8f-%d1%82%d0%b0-%d1%81%d1%88%d0%b0/"
-      },
-      "fb15066f70b7e813": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "21.08, Пт, 19:00",
-        "event_date": "2026-08-21",
-        "event_type": "Дегустація",
-        "id": "fb15066f70b7e813",
-        "price": "1500 грн",
-        "title": "Аргентина: більше, ніж Malbec",
-        "url": "https://badboy.ua/product/%d0%b0%d1%80%d0%b3%d0%b5%d0%bd%d1%82%d0%b8%d0%bd%d0%b0-%d0%b1%d1%96%d0%bb%d1%8c%d1%88%d0%b5-%d0%bd%d1%96%d0%b6-malbec/"
       }
     }
   }
