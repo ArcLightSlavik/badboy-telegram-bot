@@ -28,6 +28,39 @@
         "price": "1000 грн",
         "title": "Помаранчеві зі всього світу",
         "url": "https://badboy.ua/product/%d0%bf%d0%be%d0%bc%d0%b0%d1%80%d0%b0%d0%bd%d1%87%d0%b5%d0%b2%d1%96-%d0%b7%d1%96-%d0%b2%d1%81%d1%8c%d0%be%d0%b3%d0%be-%d1%81%d0%b2%d1%96%d1%82%d1%83/"
+      },
+      "b91c6a88ef3912d1": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "23.09, Ср, 19:00",
+        "event_date": "2026-09-23",
+        "event_type": "Дегустація",
+        "id": "b91c6a88ef3912d1",
+        "price": "1500 грн",
+        "title": "Найкраще біло вино на планеті, але це не точно",
+        "url": "https://badboy.ua/product/%d0%bd%d0%b0%d0%b9%d0%ba%d1%80%d0%b0%d1%89%d0%b5-%d0%b1%d1%96%d0%bb%d0%be-%d0%b2%d0%b8%d0%bd%d0%be-%d0%bd%d0%b0-%d0%bf%d0%bb%d0%b0%d0%bd%d0%b5%d1%82%d1%96-%d0%b0%d0%bb%d0%b5-%d1%86%d0%b5-%d0%bd%d0%b5/"
+      },
+      "cb8665b944f4a0bd": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "18.09, Пт, 19:00",
+        "event_date": "2026-09-18",
+        "event_type": "Дегустація",
+        "id": "cb8665b944f4a0bd",
+        "price": "2200 грн",
+        "title": "Лабораторія джин-тоніку",
+        "url": "https://badboy.ua/product/%d0%bb%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d1%96%d1%8f-%d0%b4%d0%b6%d0%b8%d0%bd-%d1%82%d0%be%d0%bd%d1%96%d0%ba%d1%83/"
+      },
+      "ff8db097cc44bb89": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "17.09, Чт, 19:00",
+        "event_date": "2026-09-17",
+        "event_type": "Дегустація",
+        "id": "ff8db097cc44bb89",
+        "price": "1500 грн",
+        "title": "Гірськовинний перевал",
+        "url": "https://badboy.ua/product/%d0%b3%d1%96%d1%80%d1%81%d1%8c%d0%ba%d0%be%d0%b2%d0%b8%d0%bd%d0%bd%d0%b8%d0%b9-%d0%bf%d0%b5%d1%80%d0%b5%d0%b2%d0%b0%d0%bb/"
       }
     }
   }
