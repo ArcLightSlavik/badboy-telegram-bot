@@ -8,16 +8,38 @@
   "schema_version": 2,
   "seen_events": {
     "lviv": {
-      "4415572aff1ca99d": {
+      "20a5e3fb3b90c98d": {
         "city": "lviv",
         "city_name": "Львів",
-        "date_text": "30.10, Пт, 19:00",
-        "event_date": "2026-10-30",
+        "date_text": "7.11, Сб, 19:00",
+        "event_date": "2026-11-07",
         "event_type": "Дегустація",
-        "id": "4415572aff1ca99d",
-        "price": "3900 грн",
-        "title": "Гастровечеря про літо",
-        "url": "https://badboy.ua/product/%d0%b3%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b2%d0%b5%d1%87%d0%b5%d1%80%d1%8f-%d0%bf%d1%80%d0%be-%d0%bb%d1%96%d1%82%d0%be/"
+        "id": "20a5e3fb3b90c98d",
+        "price": "1000 грн",
+        "title": "50 відтінків Рожевого",
+        "url": "https://badboy.ua/product/50-%d0%b2%d1%96%d0%b4%d1%82%d1%96%d0%bd%d0%ba%d1%96%d0%b2-%d1%80%d0%be%d0%b6%d0%b5%d0%b2%d0%be%d0%b3%d0%be-2/"
+      },
+      "4889d20f1b358389": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "11.11, Ср, 19:00",
+        "event_date": "2026-11-11",
+        "event_type": "Дегустація",
+        "id": "4889d20f1b358389",
+        "price": "3500 грн",
+        "title": "Історія однієї пляшки: KURNI Magnum",
+        "url": "https://badboy.ua/product/%d1%96%d1%81%d1%82%d0%be%d1%80%d1%96%d1%8f-%d0%be%d0%b4%d0%bd%d1%96%d1%94%d1%97-%d0%bf%d0%bb%d1%8f%d1%88%d0%ba%d0%b8-kurni-magnum/"
+      },
+      "6499621967300560": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "15.11, Нд, 19:00",
+        "event_date": "2026-11-15",
+        "event_type": "Дегустація",
+        "id": "6499621967300560",
+        "price": "1599 грн",
+        "title": "Безкордонні бульбашки",
+        "url": "https://badboy.ua/product/%d0%b1%d0%b5%d0%b7%d0%ba%d0%be%d1%80%d0%b4%d0%be%d0%bd%d0%bd%d1%96-%d0%b1%d1%83%d0%bb%d1%8c%d0%b1%d0%b0%d1%88%d0%ba%d0%b8/"
       },
       "699be250129f91a5": {
         "city": "lviv",
@@ -51,6 +73,28 @@
         "price": "5500 грн",
         "title": "Шампанська гастровечеря у Львові",
         "url": "https://badboy.ua/product/%d1%88%d0%b0%d0%bc%d0%bf%d0%b0%d0%bd%d1%81%d1%8c%d0%ba%d0%b0-%d0%b3%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b2%d0%b5%d1%87%d0%b5%d1%80%d1%8f-%d1%83-%d0%bb%d1%8c%d0%b2%d0%be%d0%b2%d1%96/"
+      },
+      "d56dc5215fed5ed2": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "13.11, Пт, 19:00",
+        "event_date": "2026-11-13",
+        "event_type": "Дегустація",
+        "id": "d56dc5215fed5ed2",
+        "price": "2199 грн",
+        "title": "Зінфандель проти Примітиво",
+        "url": "https://badboy.ua/product/%d0%b7%d1%96%d0%bd%d1%84%d0%b0%d0%bd%d0%b4%d0%b5%d0%bb%d1%8c-%d0%bf%d1%80%d0%be%d1%82%d0%b8-%d0%bf%d1%80%d0%b8%d0%bc%d1%96%d1%82%d0%b8%d0%b2%d0%be/"
+      },
+      "db35129c1e1c1d02": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "12.11, Чт, 19:00",
+        "event_date": "2026-11-12",
+        "event_type": "Дегустація",
+        "id": "db35129c1e1c1d02",
+        "price": "4500 грн",
+        "title": "Вечір великого торфу: надважка димна категорія",
+        "url": "https://badboy.ua/product/%d0%b2%d0%b5%d1%87%d1%96%d1%80-%d0%b2%d0%b5%d0%bb%d0%b8%d0%ba%d0%be%d0%b3%d0%be-%d1%82%d0%be%d1%80%d1%84%d1%83-%d0%bd%d0%b0%d0%b4%d0%b2%d0%b0%d0%b6%d0%ba%d0%b0-%d0%b4%d0%b8%d0%bc%d0%bd%d0%b0-%d0%ba/"
       }
     }
   }
