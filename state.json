@@ -1,6 +1,7 @@
 {
   "bootstrapped": true,
   "completed_events": {
+    "20a5e3fb3b90c98d": "2026-11-07",
     "699be250129f91a5": "2026-10-31",
     "7ddd2ebb51d724de": "2026-10-24",
     "aac244358b824086": "2026-11-06",
@@ -9,17 +10,6 @@
   "schema_version": 2,
   "seen_events": {
     "lviv": {
-      "20a5e3fb3b90c98d": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "7.11, Сб, 19:00",
-        "event_date": "2026-11-07",
-        "event_type": "Дегустація",
-        "id": "20a5e3fb3b90c98d",
-        "price": "1000 грн",
-        "title": "50 відтінків Рожевого",
-        "url": "https://badboy.ua/product/50-%d0%b2%d1%96%d0%b4%d1%82%d1%96%d0%bd%d0%ba%d1%96%d0%b2-%d1%80%d0%be%d0%b6%d0%b5%d0%b2%d0%be%d0%b3%d0%be-2/"
-      },
       "6499621967300560": {
         "city": "lviv",
         "city_name": "Львів",
