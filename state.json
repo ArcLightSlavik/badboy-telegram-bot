@@ -10,6 +10,17 @@
   "schema_version": 2,
   "seen_events": {
     "lviv": {
+      "6c78050321189cdf": {
+        "city": "lviv",
+        "city_name": "Львів",
+        "date_text": "12.12, Сб, 18:00",
+        "event_date": "2026-12-12",
+        "event_type": "Дегустація",
+        "id": "6c78050321189cdf",
+        "price": "5500 грн",
+        "title": "Гастровечеряємо тунцем Bluefin у Львові",
+        "url": "https://badboy.ua/product/%d0%b3%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b2%d0%b5%d1%87%d0%b5%d1%80%d1%8f%d1%94%d0%bc%d0%be-%d1%82%d1%83%d0%bd%d1%86%d0%b5%d0%bc-bluefin-%d1%83-%d0%bb%d1%8c%d0%b2%d0%be%d0%b2%d1%96/"
+      },
       "9475cf945d546970": {
         "city": "lviv",
         "city_name": "Львів",
