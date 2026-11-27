@@ -1,9 +1,9 @@
 {
   "bootstrapped": true,
   "completed_events": {
+    "9475cf945d546970": "2026-11-27",
     "cb5dcc887930e55d": "2026-11-14",
-    "d56dc5215fed5ed2": "2026-11-13",
-    "db35129c1e1c1d02": "2026-11-12"
+    "d56dc5215fed5ed2": "2026-11-13"
   },
   "schema_version": 2,
   "seen_events": {
@@ -51,17 +51,6 @@
         "price": "2800 грн",
         "title": "Бульбашки і вечірка у Львові",
         "url": "https://badboy.ua/product/%d0%b1%d1%83%d0%bb%d1%8c%d0%b1%d0%b0%d1%88%d0%ba%d0%b8-%d1%96-%d0%b2%d0%b5%d1%87%d1%96%d1%80%d0%ba%d0%b0-%d1%83-%d0%bb%d1%8c%d0%b2%d0%be%d0%b2%d1%96/"
-      },
-      "9475cf945d546970": {
-        "city": "lviv",
-        "city_name": "Львів",
-        "date_text": "27.11, Пт, 19:00",
-        "event_date": "2026-11-27",
-        "event_type": "Дегустація",
-        "id": "9475cf945d546970",
-        "price": "1700 грн",
-        "title": "Чипси та бульбашки!",
-        "url": "https://badboy.ua/product/%d1%87%d0%b8%d0%bf%d1%81%d0%b8-%d1%82%d0%b0-%d0%b1%d1%83%d0%bb%d1%8c%d0%b1%d0%b0%d1%88%d0%ba%d0%b8/"
       },
       "a431f77c773a7912": {
         "city": "lviv",
